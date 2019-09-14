@@ -3,13 +3,13 @@ package com.example.hw02;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -17,7 +17,9 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     Button button_add;
+    Button button_clear;
     Button button_checkout;
+    ProgressBar progressBar;
     String[] toppingsList = {"Bacon", "Cheese", "Garlic", "Green Pepper", "Mushroom", "Olives", "Onions", "Red Pepper"};
     ArrayList<String> selectedToppings = new ArrayList<String>();
 
@@ -28,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Pizza Store");
 
         button_add = findViewById(R.id.button_add);
+        button_clear = findViewById(R.id.button_clear);
         button_checkout = findViewById(R.id.button_checkout);
+        progressBar = findViewById(R.id.progressBar);
 
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,33 +47,41 @@ public class MainActivity extends AppCompatActivity {
                             switch (topping) {
                                 case 0:
                                     selectedToppings.add("Bacon");
+                                    progressBar.incrementProgressBy(10);
                                     break;
                                 case 1:
                                     selectedToppings.add("Cheese");
+                                    progressBar.incrementProgressBy(10);
                                     break;
                                 case 2:
                                     selectedToppings.add("Garlic");
+                                    progressBar.incrementProgressBy(10);
                                     break;
                                 case 3:
                                     selectedToppings.add("Green Pepper");
+                                    progressBar.incrementProgressBy(10);
                                     break;
                                 case 4:
                                     selectedToppings.add("Mushroom");
+                                    progressBar.incrementProgressBy(10);
                                     break;
                                 case 5:
                                     selectedToppings.add("Olives");
+                                    progressBar.incrementProgressBy(10);
                                     break;
                                 case 6:
                                     selectedToppings.add("Onions");
+                                    progressBar.incrementProgressBy(10);
                                     break;
                                 case 7:
                                     selectedToppings.add("Red Pepper");
+                                    progressBar.incrementProgressBy(10);
                                     break;
                                 default:
                                     break;
                             }
                         } else {
-                            Toast.makeText(getApplicationContext(), "Maximum capacity reached!!", Toast.LENGTH_SHORT);
+                            Toast.makeText(getApplicationContext(), "Maximum Topping capacity reached!!", Toast.LENGTH_SHORT);
                             Log.d("Maximum capacity", selectedToppings.toString());
                         }
                     }
@@ -77,6 +89,15 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog dialog = builder.create();
                 dialog.show();
                 Log.d("alert", selectedToppings.toString());
+            }
+        });
+
+        button_clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedToppings.removeAll(selectedToppings);
+                Log.d("remove",selectedToppings.toString());
+                progressBar.setProgress(0);
             }
         });
 
