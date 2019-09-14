@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button button_add;
     Button button_checkout;
-    String[] toppingsList = {"Bacon","Cheese","Garlic","Green Pepper","Mushroom","Olives","Onions","Red Pepper"};
+    String[] toppingsList = {"Bacon", "Cheese", "Garlic", "Green Pepper", "Mushroom", "Olives", "Onions", "Red Pepper"};
     ArrayList<String> selectedToppings = new ArrayList<String>();
 
     @Override
@@ -38,39 +39,44 @@ public class MainActivity extends AppCompatActivity {
                 builder.setItems(toppingsList, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int topping) {
-                        switch (topping) {
-                            case 0:
-                                selectedToppings.add("Bacon");
-                                break;
-                            case 1:
-                                selectedToppings.add("Cheese");
-                                break;
-                            case 2:
-                                selectedToppings.add("Garlic");
-                                break;
-                            case 3:
-                                selectedToppings.add("Green Pepper");
-                                break;
-                            case 4:
-                                selectedToppings.add("Mushroom");
-                                break;
-                            case 5:
-                                selectedToppings.add("Olives");
-                                break;
-                            case 6:
-                                selectedToppings.add("Onions");
-                                break;
-                            case 7:
-                                selectedToppings.add("Red Pepper");
-                                break;
-                            default:
-                                break;
+                        if (selectedToppings.size() < 10) {
+                            switch (topping) {
+                                case 0:
+                                    selectedToppings.add("Bacon");
+                                    break;
+                                case 1:
+                                    selectedToppings.add("Cheese");
+                                    break;
+                                case 2:
+                                    selectedToppings.add("Garlic");
+                                    break;
+                                case 3:
+                                    selectedToppings.add("Green Pepper");
+                                    break;
+                                case 4:
+                                    selectedToppings.add("Mushroom");
+                                    break;
+                                case 5:
+                                    selectedToppings.add("Olives");
+                                    break;
+                                case 6:
+                                    selectedToppings.add("Onions");
+                                    break;
+                                case 7:
+                                    selectedToppings.add("Red Pepper");
+                                    break;
+                                default:
+                                    break;
+                            }
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Maximum capacity reached!!", Toast.LENGTH_SHORT);
+                            Log.d("Maximum capacity", selectedToppings.toString());
                         }
                     }
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
-                Log.d("alert",selectedToppings.toString());
+                Log.d("alert", selectedToppings.toString());
             }
         });
 
