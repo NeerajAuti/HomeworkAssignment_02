@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">HW02</string>
+    <string name="button_add">Add Topping</string>
+    <string name="button_clear">Clear Pizza</string>
+    <string name="button_checkout">Checkout</string>
 </resources>
