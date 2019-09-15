@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -16,12 +17,14 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    CheckBox cb_delivery;
     Button button_add;
     Button button_clear;
     Button button_checkout;
     ProgressBar progressBar;
     String[] toppingsList = {"Bacon", "Cheese", "Garlic", "Green Pepper", "Mushroom", "Olives", "Onions", "Red Pepper"};
     ArrayList<String> selectedToppings = new ArrayList<String>();
+    boolean isChecked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("Pizza Store");
 
+        cb_delivery = findViewById(R.id.cb_delivery);
         button_add = findViewById(R.id.button_add);
         button_clear = findViewById(R.id.button_clear);
         button_checkout = findViewById(R.id.button_checkout);
@@ -105,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent displayOrder = new Intent(MainActivity.this, OrderActivity.class);
+                isChecked = cb_delivery.isChecked();
+
+                displayOrder.putExtra("TotalToppings", selectedToppings.size());
+                displayOrder.putExtra("Delivery", isChecked);
                 startActivity(displayOrder);
             }
         });
