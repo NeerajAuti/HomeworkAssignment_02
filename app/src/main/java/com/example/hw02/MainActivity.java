@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
                                     break;
                             }
                         } else {
-                            Toast.makeText(getApplicationContext(), "Maximum Topping capacity reached!!", Toast.LENGTH_SHORT);
+                            Toast.makeText(getApplicationContext(), "Maximum Topping capacity reached!!", Toast.LENGTH_SHORT).show();
                             Log.d("Maximum capacity", selectedToppings.toString());
                         }
                     }
