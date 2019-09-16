@@ -1,15 +1,22 @@
 package com.example.hw02;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.gridlayout.widget.GridLayout;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.icu.text.Transliterator;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -23,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
     Button button_checkout;
     ProgressBar progressBar;
     String[] toppingsList = {"Bacon", "Cheese", "Garlic", "Green Pepper", "Mushroom", "Olives", "Onions", "Red Pepper"};
-    ArrayList<String> selectedToppings = new ArrayList<String>();
+    ArrayList<String> selectedToppings = new ArrayList<>();
     boolean isChecked = false;
+    androidx.gridlayout.widget.GridLayout ImageLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         button_clear = findViewById(R.id.button_clear);
         button_checkout = findViewById(R.id.button_checkout);
         progressBar = findViewById(R.id.progressBar);
+        ImageLayout = findViewById(R.id.ImageLayout);
 
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,38 +57,143 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int topping) {
                         if (selectedToppings.size() < 10) {
+                            final ImageView img = new ImageView(getApplicationContext());
                             switch (topping) {
                                 case 0:
                                     selectedToppings.add("Bacon");
                                     progressBar.incrementProgressBy(10);
+                                    img.setImageDrawable(getDrawable(R.drawable.bacon));
+                                    img.setLayoutParams(new GridLayout.LayoutParams());
+                                    img.getLayoutParams().height = 150;
+                                    img.getLayoutParams().width = 150;
+                                    img.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            ImageLayout.removeView(img);
+                                            selectedToppings.remove("Bacon");
+                                            progressBar.incrementProgressBy(-10);
+                                        }
+                                    });
+                                    ImageLayout.addView(img);
                                     break;
                                 case 1:
                                     selectedToppings.add("Cheese");
                                     progressBar.incrementProgressBy(10);
+                                    img.setImageDrawable(getDrawable(R.drawable.cheese));
+                                    img.setLayoutParams(new GridLayout.LayoutParams());
+                                    img.getLayoutParams().height = 150;
+                                    img.getLayoutParams().width = 150;
+                                    img.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            ImageLayout.removeView(img);
+                                            selectedToppings.remove("Cheese");
+                                            progressBar.incrementProgressBy(-10);
+                                        }
+                                    });
+                                    ImageLayout.addView(img);
                                     break;
                                 case 2:
                                     selectedToppings.add("Garlic");
                                     progressBar.incrementProgressBy(10);
+                                    img.setImageDrawable(getDrawable(R.drawable.garlic));
+                                    img.setLayoutParams(new GridLayout.LayoutParams());
+                                    img.getLayoutParams().height = 150;
+                                    img.getLayoutParams().width = 150;
+                                    img.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            ImageLayout.removeView(img);
+                                            selectedToppings.remove("Garlic");
+                                            progressBar.incrementProgressBy(-10);
+                                        }
+                                    });
+                                    ImageLayout.addView(img);
                                     break;
                                 case 3:
                                     selectedToppings.add("Green Pepper");
                                     progressBar.incrementProgressBy(10);
+                                    img.setImageDrawable(getDrawable(R.drawable.green_pepper));
+                                    img.setLayoutParams(new GridLayout.LayoutParams());
+                                    img.getLayoutParams().height = 150;
+                                    img.getLayoutParams().width = 150;
+                                    img.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            ImageLayout.removeView(img);
+                                            selectedToppings.remove("Green Pepper");
+                                            progressBar.incrementProgressBy(-10);
+                                        }
+                                    });
+                                    ImageLayout.addView(img);
                                     break;
                                 case 4:
                                     selectedToppings.add("Mushroom");
                                     progressBar.incrementProgressBy(10);
+                                    img.setImageDrawable(getDrawable(R.drawable.mashroom));
+                                    img.setLayoutParams(new GridLayout.LayoutParams());
+                                    img.getLayoutParams().height = 150;
+                                    img.getLayoutParams().width = 150;
+                                    img.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            ImageLayout.removeView(img);
+                                            selectedToppings.remove("Mushroom");
+                                            progressBar.incrementProgressBy(-10);
+                                        }
+                                    });
+                                    ImageLayout.addView(img);
                                     break;
                                 case 5:
                                     selectedToppings.add("Olives");
                                     progressBar.incrementProgressBy(10);
+                                    img.setImageDrawable(getDrawable(R.drawable.olive));
+                                    img.setLayoutParams(new GridLayout.LayoutParams());
+                                    img.getLayoutParams().height = 150;
+                                    img.getLayoutParams().width = 150;
+                                    img.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            ImageLayout.removeView(img);
+                                            selectedToppings.remove("Olives");
+                                            progressBar.incrementProgressBy(-10);
+                                        }
+                                    });
+                                    ImageLayout.addView(img);
                                     break;
                                 case 6:
                                     selectedToppings.add("Onions");
                                     progressBar.incrementProgressBy(10);
+                                    img.setImageDrawable(getDrawable(R.drawable.onion));
+                                    img.setLayoutParams(new GridLayout.LayoutParams());
+                                    img.getLayoutParams().height = 150;
+                                    img.getLayoutParams().width = 150;
+                                    img.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            ImageLayout.removeView(img);
+                                            selectedToppings.remove("Onions");
+                                            progressBar.incrementProgressBy(-10);
+                                        }
+                                    });
+                                    ImageLayout.addView(img);
                                     break;
                                 case 7:
                                     selectedToppings.add("Red Pepper");
                                     progressBar.incrementProgressBy(10);
+                                    img.setImageDrawable(getDrawable(R.drawable.red_pepper));
+                                    img.setLayoutParams(new GridLayout.LayoutParams());
+                                    img.getLayoutParams().height = 150;
+                                    img.getLayoutParams().width = 150;
+                                    img.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            ImageLayout.removeView(img);
+                                            selectedToppings.remove("Red Pepper");
+                                            progressBar.incrementProgressBy(-10);
+                                        }
+                                    });
+                                    ImageLayout.addView(img);
                                     break;
                                 default:
                                     break;
@@ -100,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 selectedToppings.removeAll(selectedToppings);
-                Log.d("remove",selectedToppings.toString());
+                Log.d("remove", selectedToppings.toString());
                 progressBar.setProgress(0);
             }
         });
@@ -110,8 +224,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent displayOrder = new Intent(MainActivity.this, OrderActivity.class);
                 isChecked = cb_delivery.isChecked();
-
                 displayOrder.putExtra("TotalToppings", selectedToppings.size());
+                displayOrder.putExtra("Toppings", selectedToppings);
                 displayOrder.putExtra("Delivery", isChecked);
                 startActivity(displayOrder);
             }

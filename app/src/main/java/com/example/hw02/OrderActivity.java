@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class OrderActivity extends AppCompatActivity {
 
     TextView tv_pizzaprice;
@@ -37,6 +39,12 @@ public class OrderActivity extends AppCompatActivity {
         Double total = 0.0;
 
         Intent intent = getIntent();
+        ArrayList<String> ToppingsList=intent.getStringArrayListExtra("Toppings");
+        Log.d("Demo", "onCreate: "+ToppingsList);
+        String Toppings = ToppingsList.toString();
+        Toppings=Toppings.substring(1);
+        Toppings=Toppings.substring(0,Toppings.length()-1);
+        tv_toppingslist.setText(Toppings);
         int size = intent.getIntExtra("TotalToppings",0);
         isDeliveryAvailable = intent.getBooleanExtra("Delivery", false);
         Log.d("size", String.valueOf(size));
