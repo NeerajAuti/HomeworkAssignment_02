@@ -68,6 +68,7 @@ public class OrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent goMain = new Intent(OrderActivity.this, MainActivity.class);
+                startActivity(goMain);
                 finish();
             }
         });

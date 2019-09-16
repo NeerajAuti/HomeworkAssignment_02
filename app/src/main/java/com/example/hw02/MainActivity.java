@@ -47,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         ImageLayout = findViewById(R.id.ImageLayout);
 
+        button_clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Clear();
+            }
+        });
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -210,15 +216,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button_clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                selectedToppings.removeAll(selectedToppings);
-                Log.d("remove", selectedToppings.toString());
-                progressBar.setProgress(0);
-            }
-        });
-
         button_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -228,7 +225,22 @@ public class MainActivity extends AppCompatActivity {
                 displayOrder.putExtra("Toppings", selectedToppings);
                 displayOrder.putExtra("Delivery", isChecked);
                 startActivity(displayOrder);
+                finish();
             }
         });
+
+    }
+
+    public void Clear() {
+        try {
+            selectedToppings.clear();
+            isChecked = false;
+            ImageLayout.removeAllViews();
+            progressBar.setProgress(0);
+        }
+        catch (Exception e)
+        {
+
+        }
     }
 }
